@@ -80,8 +80,8 @@ function init() {
     pokeball = new Pokeball(POKEBALL_OBJECT_PATH);
     pokeballDefaultMaterial = new PokeballMaterial();
     console.log(pokeball);
-    //pokeballDefaultMaterial.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, "greatball", true);
-    pokeballDefaultMaterial.materialFromValue(new THREE.Vector3(0.7,0.1,0.1),  0, true);
+    pokeballDefaultMaterial.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, "greatball", true);
+    //pokeballDefaultMaterial.materialFromValue(new THREE.Vector3(1,1,1),  1, false);
     scene.add(pokeball.pivot);
 
 }

@@ -1,7 +1,6 @@
 "use strict";
 
-function FileExists(url)
-{
+function FileExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
     http.send();
@@ -31,16 +30,19 @@ function loadTexture(file) {
  * returns the loaded envMap
  */
 function loadEnvMap(path){
-    return new THREE.CubeTextureLoader()
-	.setPath( path )
-	.load( [
+    console.log(path);
+    let loader =  new THREE.CubeTextureLoader();
+    loader.setPath( path );
+    let textureCube = loader.load( [
 		'px.jpg',
 		'nx.jpg',
 		'py.jpg',
 		'ny.jpg',
 		'pz.jpg',
 		'nz.jpg'
-	] );
+    ] );
+    scene.background = textureCube;
+    return textureCube;
 }
 
 /**
@@ -157,7 +159,7 @@ function PokeballMaterial(){
             this.normalMap = loadTexture(SHARED_RESOURCES_PATH + "normal.png");  // load default normal map
         }
         
-        this.envMap = loadEnvMap(SHARED_RESOURCES_PATH + "env"); //load default environment map
+        this.envMap = loadEnvMap(SHARED_RESOURCES_PATH + "env/"); //load default environment map
 
         if(FileExists(path + "/" + basename + "/specular.png")){
             this.specular = loadTexture(path + "/" + basename + "/specular.png");
@@ -189,8 +191,8 @@ function PokeballMaterial(){
  
         this.normalMap = loadTexture(SHARED_RESOURCES_PATH + "normal.png");  // load default normal map
         
-        this.envMap = loadEnvMap(SHARED_RESOURCES_PATH + "env"); //load default environment map
-        
+        this.envMap = loadEnvMap(SHARED_RESOURCES_PATH + "env/"); //load default environment map
+    
         this.color = color;
         this.metalness = metalness;
 
