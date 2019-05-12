@@ -6,11 +6,20 @@ let controls = new THREE.OrbitControls(camera, renderer.domElement);
 let scene = new THREE.Scene();
 
 let stats = new Stats();
+let gui;
+
 let pokeball;
 let pokeballDefaultMaterial;
 
-/* GUI */
-let gui;
+let pokeballParameters = {
+    isWorn: false,
+    isStock: true,
+    stockTexture: "pokeball",
+    top: {kind: "metal", metalColor: "---", plasticColor: "---", otherTexture: "---"},
+    bottom: {kind: "metal", metalColor: "---", plasticColor: "---", otherTexture: "---"},
+    ring: {kind: "metal", metalColor: "---", plasticColor: "---", otherTexture: "---"},
+    button: {kind: "metal", metalColor: "---", plasticColor: "--", otherTexture: "---"},
+}
 
 function clearGui() {
     if (gui) gui.destroy();
@@ -21,37 +30,51 @@ function clearGui() {
 function buildGui() {
     clearGui();
 
+    gui.add( pokeballParameters, 'isWorn', false ).onChange( function() {
+        let mat = new PokeballMaterial();
+        //not correct, must be set checking isStock
+        mat.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, pokeballParameters.stockTexture, pokeballParameters.isWorn);
+        pokeball.applyMaterial(mat);
+        render();
+    });
+
+    gui.add(pokeballParameters, 'stockTexture', ["pokeball", "greatball", "ultraball", "fastball", "safariball"]).onChange(
+        function(newVal) {
+            pokeballParameters.isStock = true;
+            let mat = new PokeballMaterial();
+            mat.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, newVal, pokeballParameters.isWorn);
+            pokeball.applyMaterial(mat);
+            render();
+        }
+    );
+
     let topSettings = gui.addFolder('Top');
     let bottomSettings = gui.addFolder('Bottom');
     let ringSettings = gui.addFolder('Ring');
     let buttonSettings = gui.addFolder('Button');
 
+    topSettings.add(pokeballParameters.top, 'metalColor', ["red", "green", "blue", "black", "white"]).onChange(
+        function(newVal) {
+            pokeballParameters.isStock = false;
+            pokeballParameters.top.kind = "metal";
+            let mat = new PokeballMaterial();
+            mat.materialFromValue( colorToVector3(newVal) , 1 , pokeballParameters.isWorn);
+            pokeball.applyMaterialPart("top", mat);
+            render();
+        }
+    );
 
-    let textureSettings = gui.addFolder('Texture parameters');
-    textureSettings.add(textures, 'top', ["Pokeball", "Masterball", "Blue", "Rubber"]).onChange(
-        function (newVal) {
-            setTexture(newVal, "Top");
-            topMaterial.needsUpdate = true;
-            render()
-        });
-    textureSettings.add(textures, 'bottom', ["Pokeball", "Masterball", "Blue", "Rubber"]).onChange(
-        function (newVal) {
-            setTexture(newVal, "Bottom");
-            bottomMaterial.needsUpdate = true;
-            render()
-        });
-    textureSettings.add(textures, 'ring', ["Pokeball", "Masterball", "Blue", "Rubber"]).onChange(
-        function (newVal) {
-            setTexture(newVal, "Ring");
-            bottomMaterial.needsUpdate = true;
-            render()
-        });
-    textureSettings.add(textures, 'button', ["Pokeball", "Masterball", "Blue", "Rubber"]).onChange(
-        function (newVal) {
-            setTexture(newVal, "Button");
-            bottomMaterial.needsUpdate = true;
-            render()
-        });
+    topSettings.add(pokeballParameters.top, 'plasticColor', ["red", "green", "blue", "black", "white"]).onChange(
+        function(newVal) {
+            pokeballParameters.isStock = false;
+            pokeballParameters.top.kind = "plastic";
+            let mat = new PokeballMaterial();
+            mat.materialFromValue( colorToVector3(newVal) , 0 , pokeballParameters.isWorn);
+            pokeball.applyMaterialPart("top", mat);
+            render();
+        }
+    );
+
 }
 
 
@@ -80,7 +103,7 @@ function init() {
     pokeball = new Pokeball(POKEBALL_OBJECT_PATH);
     pokeballDefaultMaterial = new PokeballMaterial();
     console.log(pokeball);
-    pokeballDefaultMaterial.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, "greatball", true);
+    pokeballDefaultMaterial.materialFromTexture(STOCK_BALLS_RESOURCES_PATH, pokeballParameters.stockTexture, pokeballParameters.isWorn);
     //pokeballDefaultMaterial.materialFromValue(new THREE.Vector3(1,1,1),  1, false);
     scene.add(pokeball.pivot);
 
@@ -109,4 +132,5 @@ function render() {
 }
 
 init();
+buildGui();
 update();

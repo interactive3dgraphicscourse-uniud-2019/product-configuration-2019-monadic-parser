@@ -46,6 +46,30 @@ function Pokeball(resourceURL){
     }
 
     /**
+     * apply the material to the selected component of the pokeball
+     */
+    this.applyMaterialPart = function(part, material){
+        switch (part) {
+            case "top":
+                this.top.applyMaterial(material);
+                this.updatePivot();
+                break;
+            case "bottom":
+                this.bottom.applyMaterial(material);
+                this.updatePivot();
+                break;
+            case "ring":
+                this.ring.applyMaterial(material);
+                this.updatePivot();
+                break;
+            case "button":
+                this.button.applyMaterial(material);
+                this.updatePivot();
+                break;
+        }
+    }
+
+    /**
      * Update the pivot references to the other pokeball components
      */
     this.updatePivot = function(){
