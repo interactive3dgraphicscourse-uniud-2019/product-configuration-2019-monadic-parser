@@ -45,10 +45,6 @@ export class Pokeball {
         return this._objReady;
     }
 
-    killme(i) {
-        this._top._object.material.roughness = i+0.01;
-    }
-
     applyMaterial(material) {
         this._top.applyMaterial(material);
         this._bottom.applyMaterial(material);

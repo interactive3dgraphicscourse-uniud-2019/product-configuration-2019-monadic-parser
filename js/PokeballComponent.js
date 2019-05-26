@@ -12,7 +12,4 @@ export class PokeballComponent {
         this._object.material = this._material;
     }
 
-    initialize() {
-        
-    }
 }
