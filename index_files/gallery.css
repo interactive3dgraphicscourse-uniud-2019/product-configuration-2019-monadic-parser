@@ -1,0 +1,58 @@
+.testimonial-group > .row {
+  overflow-x: auto;
+  overflow-y:hidden;
+  white-space: nowrap;
+  display: inline-block;
+  flex-wrap: nowrap; 
+}
+.testimonial-group > .row > .col-4 {
+  display: inline-block;
+  float: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* style for the top selling section */
+.topsellingcard {
+  top: 18vh;
+  bottom: 62vh;
+  left: 69vw;
+  right: 1vw;
+  position: fixed;
+}
+
+/* style for the big section with the 3 materials types */
+.foldercard {
+  top: 39vh;
+  bottom: 7vh;
+  left: 69vw;
+  right: 1vw;
+  position: fixed;
+}
+
+/* style for the metals section */
+.subfoldercard-1 {
+  top: 45vh;
+  bottom: 40vh;
+  left: 70vw;
+  right: 2vw;
+  position: fixed;
+}
+
+/* style for the ceramic section */
+.subfoldercard-2 {
+  top: 61vh;
+  bottom: 24vh;
+  left: 70vw;
+  right: 2vw;
+  position: fixed;
+}
+
+/* style for the spacial materials section */
+.subfoldercard-3 {
+  top: 77vh;
+  bottom: 8vh;
+  left: 70vw;
+  right: 2vw;
+  position: fixed;
+}

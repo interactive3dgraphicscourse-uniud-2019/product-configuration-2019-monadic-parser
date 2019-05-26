@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A pokeball configurator">
+    <meta name="author" content="Monadic parser">
+    <link rel="icon" href="index_files/favicon.ico">
+
+    <title>ACME Pokeball configurator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="index_files/bootstrap.css" rel="stylesheet">
+    <link href="index_files/navbar.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="index_files/sticky-footer.css" rel="stylesheet">
+    <link href="index_files/gallery.css" rel="stylesheet">
+
+    <style>
+        #canvas {
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            border: 0px solid black;
+            margin: 0px;
+            padding: 0px;
+            position: static;
+            top: 0px;
+            left: 0px;
+        }
+
+        #col {
+            background-color: #000;
+            width: 100%;
+            border: 0px solid black;
+            margin: 0px;
+            padding: 0px;
+            position: fixed;
+            top: 8vh;
+            bottom: 7vh;
+            left: 1vw;
+            right: 35vw;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="lib/three.js"></script>
+    <script src="lib/OrbitControls.js"></script>
+
+    <script src="lib/RGBELoader.js"></script>
+    <script src="lib/HDRCubeTextureLoader.js"></script>
+
+    <script src="lib/stats.js"></script>
+
+    <script src="lib/PMREMGenerator.js"></script>
+    <script src="lib/PMREMCubeUVPacker.js"></script>
+    <script src="lib/dat.gui.js"></script>
+    <script src="lib/LoaderSupport.js"></script>
+    <script src="lib/BufferGeometryUtils.js"></script>
+    <script src="lib/OBJLoader2.js"></script>
+
+    <script src="js/globals.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/materialPicker.js"></script>
+    <script type="module" src="js/Pokeball.js"></script>
+    <script type="module" src="js/PokeballComponent.js"></script>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" style="font-size:2vh" href="#">ACME Kalos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+            aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04" >
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size:2vh" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size:2vh" href="#">Catalogue</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" style="font-size:2vh" href="#">Configurator <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size:2vh" href="#">About us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-8" id="col">
+                <div id="canvas">
+                </div>
+            </div>
+            <div class="col-4">
+
+                <!-- Item conditions area -->
+                <div class="usedcard card" style="position: fixed; top: 8vh; bottom: 83vh; left: 69vw; right: 1vw;">
+                    <div class="card-header" style="margin: 0px; padding: 0.5vh; font-size:2vh;">
+                        Item condition
+                    </div>
+                    <div class="btn-group" role="group"
+                        style="position: fixed; top: 13vh; bottom: 84vh; left: 70vw; right: 2vw;">
+                        <button type="button" id="new-button" class="btn btn-primary"
+                            style="width:15vw; font-size:2vh; margin:0px; padding:0px;">New</button>
+                        <button type="button" id="used-button" class="btn btn-secondary"
+                            style="width:15vw; font-size:2vh; margin:0px; padding:0px;">Used</button>
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- Top selling area -->
+                <div class="topsellingcard card">
+                    <div class="card-header" style="margin: 0px; padding: 0.5vh; font-size:2vh;">
+                        Top selling designs
+                    </div>
+                    <div class="card-body testimonial-group" id="topsellingcard" style="padding:0.5vh; height: 50%">
+                        <div class="row" style="height:100%; width:100%; margin:0px">
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="pokeball" src="index_files/thumbnails/stock/poke.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer; ">
+                            </div>
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="greatball" src="index_files/thumbnails/stock/great.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                            </div>
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="ultraball" src="index_files/thumbnails/stock/ultra.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                            </div>
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="fastball" src="index_files/thumbnails/stock/fast.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                            </div>
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="safariball" src="index_files/thumbnails/stock/safari.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                            </div>
+                            <div class="col-4" style="height:100%; width:100%">
+                                <img id="netball" src="index_files/thumbnails/stock/net.jpg"
+                                    style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end -->
+
+
+                <!-- parts customization -->
+                <div class="foldercard card text-center">
+                    <!-- parts selection area -->
+                    <div class="card-header" style="position: fixed; top: 39vh; bottom: 56vh; left: 69vw; right: 1vw;">
+                        <div class="btn-group" role="group"
+                            style="position: fixed; top: 40vh; bottom: 57vh; left: 70vw; right: 2vw;">
+                            <button type="button" id="top-button" class="btn btn-primary"
+                                style="width:7.5vw; font-size:2vh; margin:0px; padding:0px;">Top</button>
+                            <button type="button" id="bottom-button" class="btn btn-secondary"
+                                style="width:7.5vw; font-size:2vh; margin:0px; padding:0px;">Bottom</button>
+                            <button type="button" id="ring-button" class="btn btn-secondary"
+                                style="width:7.5vw; font-size:2vh; margin:0px; padding:0px;">Ring</button>
+                            <button type="button" id="button-button" class="btn btn-secondary"
+                                style="width:7.5vw; font-size:2vh; margin:0px; padding:0px;">Button</button>
+                        </div>
+                    </div>
+                    <!-- end -->
+
+                    <div class="card-body" id="option-menu">
+                        <!-- metals parts -->
+                        <div class="subfoldercard-1 card">
+                            <div class="card-header" style="margin: 0px; padding: 0.0vh; font-size:1.8vh;">
+                                Metals
+                            </div>
+                            <div class="card-body testimonial-group" id="topsellingcard"
+                                style="padding:0.5vh; height: 50%">
+                                <div class="row" style="height:100%; width:100%; margin:0px">
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="red_metal" src="index_files/thumbnails/metal/red.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="green_metal" src="index_files/thumbnails/metal/green.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="blue_metal" src="index_files/thumbnails/metal/blue.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="black_metal" src="index_files/thumbnails/metal/black.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="gold_metal" src="index_files/thumbnails/metal/gold.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="copper_metal" src="index_files/thumbnails/metal/copper.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end metal-->
+
+                        <!-- ceramic parts -->
+                        <div class="subfoldercard-2 card">
+                            <div class="card-header" style="margin: 0px; padding: 0.0vh; font-size:1.8vh;">
+                                Ceramics
+                            </div>
+                            <div class="card-body testimonial-group" id="topsellingcard"
+                                style="padding:0.5vh; height: 50%">
+                                <div class="row" style="height:100%; width:100%; margin:0px">
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="red_ceramic" src="index_files/thumbnails/ceramic/red.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="green_ceramic" src="index_files/thumbnails/ceramic/green.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="blue_ceramic" src="index_files/thumbnails/ceramic/blue.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="purple_ceramic" src="index_files/thumbnails/ceramic/purple.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="white_ceramic" src="index_files/thumbnails/ceramic/white.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="black_ceramic" src="index_files/thumbnails/ceramic/black.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end ceramic-->
+
+                        <!-- other parts -->
+                        <div class="subfoldercard-3 card">
+                            <div class="card-header" style="margin: 0px; padding: 0.0vh; font-size:1.8vh;">
+                                Special materials
+                            </div>
+                            <div class="card-body testimonial-group" id="topsellingcard"
+                                style="padding:0.5vh; height: 50%">
+                                <div class="row" style="height:100%; width:100%; margin:0px">
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="fabric" src="index_files/thumbnails/others/fabric.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="marble" src="index_files/thumbnails/others/marble.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="wood" src="index_files/thumbnails/others/wood.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="tiles" src="index_files/thumbnails/others/tiles.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="rubber" src="index_files/thumbnails/others/rubber.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                    <div class="col-4" style="height:100%; width:100%">
+                                        <img id="mirror" src="index_files/thumbnails/others/mirror.jpg"
+                                            style="height: 100%; width: 100%; object-fit: contain; cursor: pointer;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end others-->
+
+                    </div>
+                </div>
+                <!-- end -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer fixed-bottom ">
+        <div style="position: fixed; top: 95vh; bottom: 2vh; left: 1vw; right: 50vw; font-size:1.5vh; color:dimgray">
+            All our products are made in Laverre city, Kalos. Original patent by Silph Co. (1996).
+        </div>
+        <div style="position: fixed; top: 96vh; bottom: 1vh; left: 83vw; right: 1vw;">
+            <button type="button" class="btn btn-primary btn-block" style="font-size:2vh; margin:0px; padding:0px;">Add
+                to cart</button>
+        </div>
+    </footer>
+
+    <script src="index_files/jquery-3.2.1.slim.min.js"></script>
+    <script src="index_files/popper.js"></script>
+    <script src="index_files/bootstrap.js"></script>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
