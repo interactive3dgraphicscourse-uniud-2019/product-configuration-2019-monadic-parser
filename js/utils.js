@@ -1,3 +1,7 @@
+
+/* utility functions */
+
+/* loads the cubemap into the global variable */
 loadHDRCubeMap = function () {
     var hdrUrls = ['px.hdr', 'nx.hdr', 'py.hdr', 'ny.hdr', 'pz.hdr', 'nz.hdr'];
     globalHDRCubeMap = new THREE.HDRCubeTextureLoader()
@@ -22,10 +26,7 @@ loadHDRCubeMap = function () {
         });
 }
 
-/**
- * Loads texture from a file 
- * @param {path} file
- */
+/* loads the input texture image from the @file path and returns the loaded texture */
 function loadTexture(file) {
     let texture = new THREE.TextureLoader().load(file, function (texture) {
         texture.minFilter = THREE.LinearMipMapLinearFilter;

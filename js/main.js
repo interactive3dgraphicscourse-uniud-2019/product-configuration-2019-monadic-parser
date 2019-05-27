@@ -16,12 +16,15 @@ function init() {
     container.appendChild(renderer.domElement);
     renderer.gammaInput = true;
     renderer.gammaOutput = true;
-
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = 2.0;
+    
     window.addEventListener('resize', onWindowResize, false);
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.minDistance = 7;
     controls.maxDistance = 30;
+    controls.enablePan = false;
 
     loadHDRCubeMap();
 
@@ -35,11 +38,11 @@ render = function () {
     if (globalPokeball.isObjReady() && globalEnvMapLoaded) {
         let renderTarget = globalHDRCubeRenderTarget;
         let cubeMap = globalHDRCubeMap;
-        if (!globalBackgroundSet) { /* init bg */
+        if (!globalBackgroundSet) { /* initialize background */
             scene.background = cubeMap;
             globalBackgroundSet = true;
         }
-        if (!globalInitialMaterialSet) { /* initial materials */
+        if (!globalInitialMaterialSet) { /* initial materials with debug colors*/
             globalTopMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000, envMap: globalHDRCubeRenderTarget.texture });
             globalPokeball.applyMaterialToPart("top", globalTopMaterial);
             globalBottomMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff, envMap: globalHDRCubeRenderTarget.texture });

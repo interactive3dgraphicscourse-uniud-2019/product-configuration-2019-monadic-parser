@@ -1,5 +1,6 @@
 import { PokeballComponent } from "./PokeballComponent.js";
 
+/* Class for the pokeball object */
 export class Pokeball {
 
     constructor(objPath) {
@@ -12,6 +13,7 @@ export class Pokeball {
         this._objReady = false;
     }
 
+    /* loads the model components from the instance variable objPath into the instance variables */
     loadComponents() {
         this._objReady = false;
         const loader = new THREE.OBJLoader2();
@@ -25,6 +27,7 @@ export class Pokeball {
         });
     }
 
+    /* private class usage */
     applyObj(top, bottom, ring, button) {
         this._top = top;
         this._bottom = bottom;
@@ -34,6 +37,7 @@ export class Pokeball {
         this.updatePivot();
     }
 
+    /* private class usage */
     updatePivot() {
         this._pivot.add(this._top._object);
         this._pivot.add(this._bottom._object);
@@ -41,10 +45,12 @@ export class Pokeball {
         this._pivot.add(this._ring._object);
     }
 
+    /* returns true if this pokeball object has loaded the models and is ready for use */
     isObjReady() {
         return this._objReady;
     }
 
+    /* applies the input @material to each component */
     applyMaterial(material) {
         this._top.applyMaterial(material);
         this._bottom.applyMaterial(material);
@@ -52,6 +58,7 @@ export class Pokeball {
         this._button.applyMaterial(material);
     }
 
+    /* applies the input @material to the input @part component */
     applyMaterialToPart(part, material) {
         if(part=="top"){
             this._top.applyMaterial(material);

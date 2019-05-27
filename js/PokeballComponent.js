@@ -1,3 +1,5 @@
+
+/* Class for the pokeball component object */
 export class PokeballComponent {
 
     constructor(geometrySource) {
@@ -7,6 +9,7 @@ export class PokeballComponent {
         this._object = new THREE.Mesh(this._geometry, this._material);
     }
 
+    /* applies the input @material to this object  */
     applyMaterial(materialToApply) {
         this._material = materialToApply;
         this._object.material = this._material;

@@ -1,6 +1,6 @@
 
+/* modifies the input @material according to the input @name  */
 let setMaterial = function (material, name) {
-
 
     switch (name) {
         /* STOCK TEXTURES */
@@ -208,9 +208,9 @@ let setMaterial = function (material, name) {
                 0.5);
             break;
     }
-
 }
 
+/* modifies the input @material parameters setting them as the input arguments */
 let changeMaterial = function (material, color, map, metalness, normalMap, roughLow, roughHi) {
     material.color = color;
     material.map = map; // texture for the color
@@ -231,6 +231,9 @@ let changeMaterial = function (material, color, map, metalness, normalMap, rough
     }
 }
 
+/* modifies the input @material parameters setting them as the input arguments 
+   special materials are the ones defined by generic PBR textures for which the roughness should not be modified
+*/
 let changeSpecialMaterial = function (material, map, normalMap, roughMap) {
     material.color = null;
     material.map = map; // texture for the color
@@ -246,9 +249,7 @@ let changeSpecialMaterial = function (material, map, normalMap, roughMap) {
     material.needsUpdate = true;
 }
 
-
-
-
+/* modifies the input @material activating its roughness */
 let activateWorn = function (material) {
     if (material.isSpecialMaterial) return;
 
@@ -256,10 +257,10 @@ let activateWorn = function (material) {
         material.roughnessMap = loadTexture(SHARED_RESOURCES_PATH + 'roughness.png');
         material.roughness = material.roughnessHigh;
     }
-
     material.needsUpdate = true;
 }
 
+/* modifies the input @material deactivating its roughness */
 let deactivateWorn = function (material) {
     if (material.isSpecialMaterial) return;
 
@@ -267,10 +268,10 @@ let deactivateWorn = function (material) {
         material.roughnessMap = null;
         material.roughness = material.roughnessLow;
     }
-
     material.needsUpdate = true;
 }
 
+/* modifies the material of each pokeball component according to the input @name */
 let setAllMaterials = function (name) {
     setMaterial(globalTopMaterial, name);
     setMaterial(globalBottomMaterial, name);
@@ -278,6 +279,7 @@ let setAllMaterials = function (name) {
     setMaterial(globalRingMaterial, name);
 }
 
+/* modifies the material of each pokeball component activating its roughness */
 let activateWornAll = function () {
     activateWorn(globalTopMaterial);
     activateWorn(globalBottomMaterial);
@@ -285,6 +287,7 @@ let activateWornAll = function () {
     activateWorn(globalRingMaterial);
 }
 
+/* modifies the material of each pokeball component deactivating its roughness */
 let deactivateWornAll = function () {
     deactivateWorn(globalTopMaterial);
     deactivateWorn(globalBottomMaterial);
@@ -292,8 +295,10 @@ let deactivateWornAll = function () {
     deactivateWorn(globalRingMaterial);
 }
 
+/* returns a Vector3 with normalized RGB values from the input R G B components
+   input R G B: values in [0,255]
+   output: normalized Vector3 with the rgb values
+ */
 let makeColor = function (R, G, B) {
     return new THREE.Vector3(R / 255.0, G / 255.0, B / 255.0)
 }
-
-
