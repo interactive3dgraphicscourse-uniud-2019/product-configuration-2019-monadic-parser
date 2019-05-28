@@ -62,16 +62,21 @@ In seguito ad una valutazione del risultato atteso ci siamo accorti che è neces
 
 #### 25/05/2019
 * Realizzazione del sito web con le opzioni per configurare l'oggetto
+* Realizzazione delle thumbnail di anteprima dei materiali
 
 #### 26/05/2019
 * Modifica delle thumbnail del sito e dell'esposizione della scena
 
 
-## Bug e soluzioni
-#### Problema
-Il modello trovato non divide la componenti della Pokèball, non fornendo così la possibilità di modificare indipendentemente le parti
-#### Soluzione
-Modifica del modello tramite Blender
+## Problemi e soluzioni
+#### Componenti
+Il modello trovato non divide la componenti della Pokèball, non fornendo così la possibilità di modificare indipendentemente le parti. Per risolverlo abbiamo modificato il modello tramite Blender.
+#### Sito web
+Il sito, realizzato utilizzando Bootstrap non mantiene un layout corretto modificando la risoluzione del display. Per risolverlo abbiamo forzato la dimensione relativa delle componenti.
+#### Riflessioni
+Tramite shader non si riesce, abbiamo usato mesh standard material
+
+
 
 ## Crediti
 Modello della Pokeball e le texture predefinite: https://gamebanana.com/models/3162
