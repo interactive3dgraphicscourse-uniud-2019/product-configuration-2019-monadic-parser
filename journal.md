@@ -74,15 +74,4 @@ Il modello trovato non divide la componenti della Pokèball, non fornendo così 
 #### Sito web
 Il sito, realizzato utilizzando Bootstrap non mantiene un layout corretto modificando la risoluzione del display. Per risolverlo abbiamo forzato la dimensione relativa delle componenti.
 #### Riflessioni
-Tramite shader non si riesce, abbiamo usato mesh standard material
-
-
-
-## Crediti
-Modello della Pokeball e le texture predefinite: https://gamebanana.com/models/3162
-
-PBR Textures: https://cc0textures.com/list.php
-
-Environment map: https://hdrihaven.com
-
-HTML framework: https://getbootstrap.com/
+L'implementazione delle riflessioni della environment map su materiali ceramici e su metallici non perfettamente lisci tramite shader risulta problematica, abbiamo quindi utilizzato il materiale meshStandardMaterial con il generatore di PMREM.
