@@ -1,4 +1,4 @@
-# Report - Pokéball Configurator
+# Report - Pokéball configurator
 Students: Nicolò Rossi, Lorenzo Iuri, Simone Mezzavilla
 
 <!-- <img src="https://raw.githubusercontent.com/redsnic/I3DG_Uniud/master/images/progetto1/report/main.png" width="100%"> -->
