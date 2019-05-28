@@ -57,8 +57,8 @@ Si è valutata la possibilità di inserire nella scena altri oggetti pertinenti 
 In seguito ad una valutazione del risultato atteso ci siamo accorti che è necessario implementare le riflessioni ambientali tramite environment map sui materiali ceramici utilizzati, a questo fine si è deciso di non utilizzare gli shader personalizzati ma di sfruttare MeshStandardMaterial e di riscrivere il codice di conseguenza.
 * Riscrittura del codice secondo le convenzioni ES6, organizzando il codice in classi per un più facile utilizzo
 * Implementazione di riflessi ambientali tramite environment map su superfici non metalliche, secondo l'esempio https://threejs.org/examples/?q=env#webgl_materials_envmaps_hdr
-<img src="https://raw.githubusercontent.com/redsnic/I3DG_Uniud/master/images/progetto2/journal/reflects.jpg" width="70%">
 * Implementazione di una interfaccia tramite dat.gui a fine di testing.
+<img src="https://raw.githubusercontent.com/redsnic/I3DG_Uniud/master/images/progetto2/journal/reflects.jpg" width="70%">
 
 #### 25/05/2019
 * Realizzazione del sito web con le opzioni per configurare l'oggetto
