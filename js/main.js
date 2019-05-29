@@ -10,8 +10,8 @@ function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    //renderer.setPixelRatio(1);
+    //renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(1);
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
     renderer.gammaInput = true;
