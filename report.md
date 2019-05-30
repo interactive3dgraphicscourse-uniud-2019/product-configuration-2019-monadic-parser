@@ -26,6 +26,8 @@ The materials used in the configurator can be organized in four categories (as s
 
 Every material features enviroment reflections from the HDR cubemap.
 
+The stock, metallic and ceramic materials can be chosen as used, this feature will apply a roughness map to the material providing it a worn appearance.
+
 ### Web interface
 The web interface shows on the left the model with the applied materials and on the right the menus which allows the user to select the component to customize and the material to apply to it. The menus are horizontally scrollable. The whole interface has a fixed dimensions to appear the same on every display. 
 
