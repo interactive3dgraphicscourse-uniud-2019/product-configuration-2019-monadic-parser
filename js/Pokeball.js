@@ -19,10 +19,10 @@ export class Pokeball {
         const loader = new THREE.OBJLoader2();
         loader.useIndices = true;
         loader.load(this._objPath, function (obj) {
-            let top = new PokeballComponent(obj.detail.loaderRootNode.children[2].geometry);
+            let top = new PokeballComponent(obj.detail.loaderRootNode.children[0].geometry);
             let bottom = new PokeballComponent(obj.detail.loaderRootNode.children[1].geometry);
-            let ring = new PokeballComponent(obj.detail.loaderRootNode.children[3].geometry);
-            let button = new PokeballComponent(obj.detail.loaderRootNode.children[0].geometry);
+            let ring = new PokeballComponent(obj.detail.loaderRootNode.children[2].geometry);
+            let button = new PokeballComponent(obj.detail.loaderRootNode.children[3].geometry);
             globalPokeball.applyObj(top, bottom, ring, button);
         });
     }
