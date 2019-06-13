@@ -44,6 +44,7 @@ The web interface uses some thumbnails to allow the user to preview the material
 The other resources used are the `obj` file for the model, the cubemap of the environment map, the set of textures for the diffuse color, roughness and normal map for the stock and special materials.
 
 ## Shading equations
+Noted in file `BRDFEQ.pdf`.
 
 ## Credits
 Pokéball model and stock textures: https://gamebanana.com/models/3162
