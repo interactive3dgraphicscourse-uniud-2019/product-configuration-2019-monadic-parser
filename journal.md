@@ -2,34 +2,32 @@
 Questo documento tiene traccia del processo di sviluppo del progetto di grafica 3D, elencando le modifiche effettuate e le soluzioni implementate.
 
 ## Decisioni di sviluppo
-Questa sezione si occupa di elencare e descrivere le motivazioni delle varie decisioni implementative e di design prese per il progetto in questione.
-Data la consegna, si è pensato di creare la pagina di un sito per la personalizzazione e configurazione di Pokéball. Quersto consenterà la visualizzazione di un modello 3D le cui componenti sono configurabili tramite delle opzioni poste nei menù.
+Data la consegna, si è pensato di creare la pagina di un sito per la personalizzazione e configurazione di Pokéball. Questo consentirà la visualizzazione di un modello 3D le cui componenti sono configurabili tramite delle opzioni poste nei menù.
 
 ### Requisiti base
-Il progetto prevederà le seguenti attività funzionalità di base:
+Il progetto prevederà le seguenti funzionalità di base:
 * la possibilità di selezionare una texture predefinita tra alcuni "top selling"
 * la possibilità di applicare le colorazioni e texture alle singole parti della ball (top, bottom, ring, button)
-* la selezione tra un prodotto nuovo e uno usato, che cambia l'aspetto del prodotto di conseguenza
+* selezionare tra prodotto nuovo e uno usato, cambiando l'aspetto del prodotto
 * una environment map adatta al contesto
-* la possibilità di ispezionare l'oggetto liberamente
+* la possibilità di ispezionare l'oggetto
 
 ### Requisiti aggiuntivi
-Oltre ai requisiti base, questi sono stati inizialmente proposti:
+Sono stati inizialmente proposti anche le seguenti possibilità:
 * utilizzo di materiali metallici e ceramici
 * utilizzo di un materiale specchiato e uno trasparente
 * riepilogo delle scelte effettuate
 * realizzazione di un sito mobile
 * aumento del numero di poligoni del modello
 
-### Proposte e valutazione
-#### Ricerca di un modello adeguato
-Il modello per la Pokèball trovato non divide le componenti, non consentendo così di assegnare materiali alle varie parti in modo indipendente.
+## Proposte e valutazione
+
 #### Environment map
-Si è valutata la possibilità di utilizzare una environment map tratta da scene del gioco, questa non è stata realizzata perché tale environment map non è stata trovata.
+Si è valutata la possibilità di utilizzare una environment map tratta da scene del gioco, ma questa non è stata realizzata perché tale environment map non è stata trovata.
 #### Animazione
-Si è valutata la possibilità di aggiungere una animazione per l'apertura della Pokèball e la personalizzazione dell'interno dell'oggetto, questa scelta è stata velocemente scartata in quanto il modello utilizzato non ha una parte interna.
+Si è valutata la possibilità di aggiungere un'animazione per l'apertura della Pokèball e la personalizzazione dell'interno dell'oggetto; questa scelta è stata velocemente scartata in quanto il modello utilizzato non ha una parte interna.
 #### Oggetti nella scena
-Si è valutata la possibilità di inserire nella scena altri oggetti pertinenti al tema, come un oggetto su cui l'oggetto posa. Si è preferito evitare questa aggiunta per consentire una maggiore libertà nell'ispezione dell'oggetto.
+Si è valutata la possibilità di inserire nella scena altri oggetti pertinenti al tema, ad esempio un piedistallo dove far poggiare il prodotto. Si è preferito evitare questa aggiunta per consentire una maggiore libertà nella visualizzazione dell'oggetto.
 
 ## Progressi
 #### 10/05/2019
@@ -61,12 +59,14 @@ In seguito ad una valutazione del risultato atteso ci siamo accorti che è neces
 <img src="https://raw.githubusercontent.com/redsnic/I3DG_Uniud/master/images/progetto2/journal/reflects.jpg" width="70%">
 
 #### 25/05/2019
-* Realizzazione del sito web con le opzioni per configurare l'oggetto
+* Realizzazione del sito web con le opzioni di configurazione per l'oggetto
 * Realizzazione delle thumbnail di anteprima dei materiali
 
 #### 26/05/2019
 * Modifica delle thumbnail del sito e dell'esposizione della scena
 
+#### 01/06/2019
+* Fix del modello 3D
 
 ## Problemi e soluzioni
 #### Componenti
