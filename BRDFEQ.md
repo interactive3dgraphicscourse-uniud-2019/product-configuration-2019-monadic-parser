@@ -1,9 +1,14 @@
 ﻿## Full Rendering Equation
 
-In our project we used `THREE.MeshStandardMaterial`, looking at `bsdfs.glsl.js` the rendering equation used for this material is:
+In our project we used `THREE.MeshStandardMaterial`, looking at `bsdfs.glsl.js` and `envmap_fragment.glsl.js` the rendering equation used for this material is:
 
  $$ L(l, geometry, material) = $$
- $$\pi(irradiance*BRDF_{specularGGX}(roughness, c_{spec}, l, v, n)+irradiance*BRDF_{lambert}(c_{diff})) $$
+ 
+ $$\pi * (irradiance*BRDF_{specularGGX}(roughness, c_{spec}, l, v, n)+irradiance*BRDF_{lambert}(c_{diff})) $$
+ 
+ $$+$$
+ 
+  $$envColor * specularStrength * reflectivity$$
 
 ### BRDF lambert
 
@@ -34,5 +39,11 @@ $$ \alpha = roughness^2 $$
 ### Normal distribution function
 
 $$ D_{GGX}(\alpha, n \cdot h) = \frac{1}{\pi} * \frac{2^{\alpha}}    {2^{2^{(n \cdot h)}(2^{\alpha}-1)+1}}$$
+
+### Environment color
+
+La componente $envColor$ si ottiene accedendo alla cube environment map tramite il view vettore riflesso rispetto la normale, come visto a lezione e contenuto nel file `envmap_fragment.glsl.js`.
+
+
 
 
