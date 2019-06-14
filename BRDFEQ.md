@@ -6,9 +6,9 @@ In our project we used `THREE.MeshStandardMaterial`, looking at `bsdfs.glsl.js` 
  
  $$\pi * (irradiance*BRDF_{specularGGX}(roughness, c_{spec}, l, v, n)+irradiance*BRDF_{lambert}(c_{diff})) $$
  
- $$+$$
- 
-  $$envColor * specularStrength * reflectivity$$
+where $irradiance = (n \cdot l) * directLight + envLight$. 
+
+In our case $directLight = 0$.
 
 ### BRDF lambert
 
@@ -40,9 +40,7 @@ $$ \alpha = roughness^2 $$
 
 $$ D_{GGX}(\alpha, n \cdot h) = \frac{1}{\pi} * \frac{2^{\alpha}}    {2^{2^{(n \cdot h)}(2^{\alpha}-1)+1}}$$
 
-### Environment color
 
-La componente $envColor$ si ottiene accedendo alla cube environment map tramite il view vettore riflesso rispetto la normale, come visto a lezione e contenuto nel file `envmap_fragment.glsl.js`.
 
 
 
