@@ -6,9 +6,9 @@ In our project we used `THREE.MeshStandardMaterial`, looking at `bsdfs.glsl.js` 
  
  $$\pi * (irradiance*BRDF_{specularGGX}(roughness, c_{spec}, l, v, n)+irradiance*BRDF_{lambert}(c_{diff})) $$
  
-where $irradiance = (n*l)directLight + envLight$. 
+where $irradiance = (n \cdot l) * directLight + envLight$. 
 
-note that in our case $directLight = 0$.
+In our case $directLight = 0$.
 
 ### BRDF lambert
 
