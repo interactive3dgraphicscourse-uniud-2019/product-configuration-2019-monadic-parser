@@ -5,14 +5,14 @@ Students: Nicolò Rossi, Lorenzo Iuri, Simone Mezzavilla
 
 **Disclaimer:** Pokéball is a registered trademarks of Nintendo of America, Inc., used under fair, non commercial, use.
 
-**Disclaimer:** the number of commits of each github account does not represent the actual amount of worktime and codelines of each member of the team; this is because most of the project was done while all the team members where working together in the same place, and usually the commit procedure was preceded by a code-merging phase, in which the various parts of the new codelines (already tested) were reviewed and merged.
+**Disclaimer:** the number of commits of each github account does not represent the actual amount of worktime and codelines of each member of the team; this is because most of the project was done while all the team members were working together in the same place, and usually the commit procedure was preceded by a code-merging phase, in which the various parts of the new codelines (already tested) were reviewed and merged.
 
 ## Introduction
 The Pokéball configurator allows the user to customize a Pokéball starting from the classic designs or choosing from scratch the materials to apply to each component. The materials can be chosen from a list of ceramic and metallic ones, offered in a few colors. In addition some custom materials can be selected, created from PBR textures.
 
 ## Features
 ### Model
-The object chosen for the configurator is a Pokéball. The model is made of four components: two halves, the ring and the central button. The configurator can apply the materials to the four components indipendently.
+The object chosen for the configurator is a Pokéball. The model is made of four components: two halves, the ring and the central button. The configurator can apply the materials to the four components independently.
 
 
 <img align="right" width="40%" src="https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-monadic-parser/master/images/report/materials1.jpg">
@@ -33,7 +33,7 @@ The web interface shows on the left the model with the applied materials and on 
 
 ## Planning steps
 * Initially we decided the model to use upon consulting the online resources for 3D models, an important factor in the final decision was the availability of dedicated textures for the object. 
-* Next we modified the found model in order to separate the components we wanted to customize indipendently; for this task we used Blender.
+* Next we modified the found model in order to separate the components we wanted to customize independently; for this task we used Blender.
 * Concurrently we started designing the web interface for the configurator.
 * Once the model was modified we started experimenting with the materials in order to find the proper look to confer to the object in the configurator. Since we opted for environment reflections on every material we discarded the initial idea of using custom shaders and used implemented them through `MeshStandardMaterial`.
 * Then we chose an environment map and all the materials and implemented the complete working configurator.
