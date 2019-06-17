@@ -6,7 +6,8 @@ function init() {
     container = document.getElementById("canvas");
     document.getElementById("col").appendChild(container);
     camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 1, 1000);
-    camera.position.set(0, 0, 15);
+    //camera.position.set(0, 0, 15);
+    camera.position.set(-2, 4, 15);
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
     renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -17,7 +18,7 @@ function init() {
     renderer.gammaInput = true;
     renderer.gammaOutput = true;
     renderer.toneMapping = THREE.LinearToneMapping;
-    renderer.toneMappingExposure = 2.0;
+    renderer.toneMappingExposure = 1.5;
     
     window.addEventListener('resize', onWindowResize, false);
 
