@@ -35,7 +35,7 @@ The web interface shows on the left the model with the applied materials and on 
 * Initially we decided the model to use upon consulting the online resources for 3D models, an important factor in the final decision was the availability of dedicated textures for the object. 
 * Next we modified the found model in order to separate the components we wanted to customize independently; for this task we used Blender.
 * Concurrently we started designing the web interface for the configurator.
-* Once the model was modified we started experimenting with the materials in order to find the proper look to confer to the object in the configurator. Since we opted for environment reflections on every material we discarded the initial idea of using custom shaders and used implemented them through `MeshStandardMaterial`.
+* Once the model was modified we started experimenting with the materials in order to find the proper look to confer to the object in the configurator. Since we opted for environment reflections on every material we discarded the initial idea of using custom shaders and implemented them through `MeshStandardMaterial`.
 * Then we chose an environment map and all the materials and implemented the complete working configurator.
 * Finally we implemented the web interface after searching for a framework that gave us some basic layout features.
 
